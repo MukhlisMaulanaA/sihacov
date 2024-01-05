@@ -1,0 +1,16 @@
+import cv2
+import numpy as np
+
+# Baca gambar
+image = cv2.imread('angsa.jpg', 0)  # Baca dalam skala abu-abu
+
+# Terapkan Harris Corner Detector
+dst = cv2.cornerHarris(image, 2, 3, 0.04)
+
+# Tampilkan sudut yang terdeteksi
+image[dst > 0.01 * dst.max()] = 255
+
+# Tampilkan gambar hasil
+cv2.imshow('Harris Corner Detection', image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
