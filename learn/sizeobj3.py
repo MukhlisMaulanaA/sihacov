@@ -71,7 +71,7 @@ while True:
     elif key == ord(' '):
         capture_mode = not capture_mode
         if capture_mode:
-            print("Capture mode ON")
+            print("Capture mode ON") 
             counter += 1
             filename = f'capture_id_{counter}.jpg'
             cv2.imwrite(f"captures-folder/{filename}", frame)
