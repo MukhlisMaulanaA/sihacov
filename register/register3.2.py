@@ -35,7 +35,6 @@ class BoundingBoxApp:
         file_menu = tk.Menu(self.menu_bar, tearoff=0)
         self.menu_bar.add_cascade(label="Save", menu=file_menu)
         file_menu.add_command(label="Save Bounding Boxes (User)", command=self.save_bounding_boxes)
-        file_menu.add_command(label="Save Bounding Boxes (Auto)", command=self.save_area_values_to_file)
         
         self.paused = False
         self.pause_button = tk.Button(self.root, text="Pause/Resume", command=self.toggle_pause)
@@ -119,7 +118,7 @@ class BoundingBoxApp:
         return area_cm2
 
     def save_bounding_boxes(self):
-        # Meminta pengguna untuk memilih lokasi penyimpanan
+        # Meminta pengguna untuk memilih lokasi penyimpanan (image)
         file_path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
 
         if file_path:
@@ -138,7 +137,7 @@ class BoundingBoxApp:
             except Exception as e:
                 print("Error saving image with bounding boxes:", str(e))
 
-        # Meminta pengguna untuk memilih lokasi penyimpanan
+        # Meminta pengguna untuk memilih lokasi penyimpanan (nilai luas)
         file_path = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt")])
 
         if file_path:
@@ -156,21 +155,6 @@ class BoundingBoxApp:
     def save_area_value(self, area_value):
         # Simpan nilai luas ke dalam list
         self.area_values.append(area_value)
-    
-    def save_area_values_to_file(self):
-        # Meminta pengguna untuk memilih lokasi penyimpanan
-        file_path = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt")])
-
-        if file_path:
-            try:
-                with open(file_path, "w") as file:
-                    for area_value in self.area_values:
-                        file.write(f"Area: {area_value:.2f} cm^2\n")
-
-                print("Area values saved to:", file_path)
-            except Exception as e:
-                print("Error saving area values:", str(e))
-
         
 if __name__ == "__main__":
     root = tk.Tk()
